@@ -10,7 +10,7 @@
 </head>
 <body>
     <h1>Bienvenido</h1>
-    <form action="/register" method="post">
+    <form action="/register-user" method="post">
         <label>Nombre
             <input type="text" name="name" id="" placeholder="Nombre">
         </label>

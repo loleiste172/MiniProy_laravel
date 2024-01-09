@@ -38,9 +38,8 @@ Route::get('/dashboard', function(){
     return view('index');
 });
 
-Route::post('/register', [UserController::class, 'register']);
-Route::post('/login', [UserController::class, 'login']);
+Route::post('/register-user', [UserController::class, 'register']);
+Route::post('/login-user', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

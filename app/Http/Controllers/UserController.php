@@ -29,7 +29,9 @@ class UserController extends Controller
         ]);
         if(auth()->attempt(['email' => $fields['email'], 'password' => $fields['email']])){
             $request->session()->regenerate();
+            //redirigir a dashboard
         }
+        //redirigir a login si falla
     }
     public function logout() {
         auth()->logout();

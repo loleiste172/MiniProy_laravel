@@ -47,6 +47,7 @@ class ProductController extends Controller
         if(auth()->user()->rol !== "ventas"){
             $product->delete();
         }
+        auth()->logout();
         return redirect('/login', ["error" => "No estas autorizado a realizar esta acción"]);
     }
 }

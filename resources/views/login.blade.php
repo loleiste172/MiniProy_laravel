@@ -14,7 +14,7 @@
 </head>
 <body>
     <div id="card_login">
-        <form>
+        <form action="/login-user">
             <!-- Email input -->
             <div class="form-outline mb-4">
                 <input type="email" id="formEmailInput" class="form-control" />
