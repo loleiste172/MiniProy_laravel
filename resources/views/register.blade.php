@@ -20,7 +20,7 @@
         <label>Contraseña 
             <input type="password" name="password" placeholder="Constraseña">
         </label>
-        
+        <button>Ingresar</button>
     </form>
 </body>
 </html>

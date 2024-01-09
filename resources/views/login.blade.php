@@ -18,13 +18,13 @@
             <!-- Email input -->
             <div class="form-outline mb-4">
                 <input type="email" id="formEmailInput" class="form-control" />
-                <label class="form-label" for="formEmailInput">Email address</label>
+                <label class="form-label" for="formEmailInput">Correo electronico</label>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
                 <input type="password" id="formPassword" class="form-control" />
-                <label class="form-label" for="formPassword">Password</label>
+                <label class="form-label" for="formPassword">Contraseña</label>
             </div>
 
             <!-- 2 column grid layout for inline styling -->
@@ -33,22 +33,22 @@
                 <!-- Checkbox -->
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-                    <label class="form-check-label" for="form2Example31"> Remember me </label>
+                    <label class="form-check-label" for="form2Example31"> Recuerdame </label>
                 </div>
                 </div>
 
                 <div class="col">
                 <!-- Simple link -->
-                <a href="#!">Forgot password?</a>
+                <a class="disabled" href="#!" style="pointer-events: none;">¿Olvidaste tu contraseña?</a>
                 </div>
             </div>
 
             <!-- Submit button -->
-            <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+            <button type="button" class="btn btn-primary btn-block mb-4 col d-flex justify-content-center">Ingresar</button>
 
             <!-- Register buttons -->
             <div class="text-center">
-                <p>Not a member? <a href="#!">Register</a></p>
+                <p>¡No tienes una cuenta? <a href="#!">Registrate</a></p>
             </div>
         </form>
     </div>
