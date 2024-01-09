@@ -30,6 +30,17 @@ Route::get('/register', function(){
     return view('register');
 });
 
+Route::get('/dashboard', function(){
+    if(auth()->check()){
+        return view('dashboard');
+    }
+    
+    return view('index');
+});
+
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
