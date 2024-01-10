@@ -15,18 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    if(auth()->check()){
-        return view('dashboard');
-    }
-    
     return view('index');
 });
 
 Route::get('/login', function(){
+    if(auth()->check()){
+        return redirect('/');
+    }
     return view('login');
 });
 
 Route::get('/register', function(){
+    if(auth()->check()){
+        return redirect('/');
+    }
     return view('register');
 });
 
@@ -34,12 +36,21 @@ Route::get('/dashboard', function(){
     if(auth()->check()){
         return view('dashboard');
     }
-    
+    //alternativamente mandarlo a login diciendole que necesita autorizacion
     return view('index');
 });
 
-Route::post('/register-user', [UserController::class, 'register']);
-Route::post('/login-user', [UserController::class, 'login']);
-Route::post('/logout', [UserController::class, 'logout']);
+Route::get('/register', [UserController::class, 'register'])->name('register');
+Route::post('/store',  [UserController::class, 'store'])->name('store');
+
+Route::post('/login-user', [UserController::class, 'login'])->name('login-user');
 
 
+Route::get('/logout', [UserController::class, 'logout']);
+
+
+
+// Route::controller(UserController::class)->group(function() {
+
+// Route::get('/dashboard', 'dashboard')->name('dashboard');
+// });

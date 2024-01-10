@@ -14,7 +14,9 @@
 </head>
 <body>
     <div id="card_login">
-        <form action="/login-user">
+        <form action="{{ route('login-user') }}" method="post">
+        @csrf
+        @method('POST')
             <h3>Ingresa a tu cuenta</h3>
             <!-- Email input -->
             <div class="form-outline mb-4">
@@ -45,7 +47,7 @@
             </div>
 
             <!-- Submit button -->
-            <button type="button" class="btn btn-primary btn-block mb-4 col d-flex justify-content-center">Ingresar</button>
+            <button type="submit" class="btn btn-primary btn-block mb-4 col d-flex justify-content-center">Ingresar</button>
 
             <!-- Register buttons -->
             <div class="text-center">

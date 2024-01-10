@@ -10,7 +10,11 @@
 </head>
 <body>
     <div id="card_login">
-        <form action="/login-user">
+        
+        <form action="{{ route('store') }}" method="POST">
+     
+            @csrf
+            @method('POST')
             <h3>Crea tu cuenta</h3>
             <!-- Username input -->
             <div class="form-outline mb-4">
@@ -32,8 +36,8 @@
 
 
             <!-- Submit button -->
-            <button type="button" class="btn btn-primary btn-block mb-4 col d-flex justify-content-center">Crear cuenta</button>
-
+            <button type="submit" class="btn btn-primary btn-block mb-4 col d-flex justify-content-center">Crear cuenta</button>
+            
         </form>
     </div>
     <!-- <h1>Bienvenido</h1>

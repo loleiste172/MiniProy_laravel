@@ -11,7 +11,22 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-    <h1></h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Logo generico</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="./logout">log out </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">alguna funcionalidad</a>
+      </li>
+    </ul>
+  </div>
+</nav>
     <!--  -->
 <div class="container">
     <div class="row">
@@ -20,7 +35,7 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <a href="#" class="btn btn-sm btn-primary pull-left"><i class="fa fa-plus-circle"></i> Add New</a>
+                            <a href="#" class="btn btn-sm btn-primary pull-left"><i class="fa fa-plus-circle"></i> Añadir nuevo</a>
                             <form class="form-horizontal pull-right">
                                 <div class="form-group">
                                     <label>Show : </label>
@@ -47,10 +62,22 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- <tr>    MUESTRA FOREACH
+                                <td>
+                                    <ul class="action-list">
+                                        <li><a href="#" class="btn btn-primary"><i class="fa fa-pencil"></i></a></li>
+                                        <li><a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a></li>
+                                    </ul>
+                                </td>
+                                <td>1</td>
+                                <td>Vincent Williamson</td>
+                                <td>31</td>
+                                <td><a href="#" class="btn btn-sm btn-success"><i class="fa fa-search"></i></a></td>
+                            </tr> -->
                             <tr>
                                 <td>
                                     <ul class="action-list">
-                                        <li><a href="#" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a></li>
+                                        <li><a href="#" class="btn btn-primary"><i class="fa fa-pencil"></i></a></li>
                                         <li><a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a></li>
                                     </ul>
                                 </td>
@@ -62,7 +89,7 @@
                             <tr>
                                 <td>
                                     <ul class="action-list">
-                                        <li><a href="#" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a></li>
+                                        <li><a href="#" class="btn btn-primary"><i class="fa fa-pencil"></i></a></li>
                                         <li><a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a></li>
                                     </ul>
                                 </td>
@@ -74,7 +101,7 @@
                             <tr>
                                 <td>
                                     <ul class="action-list">
-                                        <li><a href="#" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a></li>
+                                        <li><a href="#" class="btn btn-primary"><i class="fa fa-pencil"></i></a></li>
                                         <li><a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a></li>
                                     </ul>
                                 </td>
@@ -86,7 +113,7 @@
                             <tr>
                                 <td>
                                     <ul class="action-list">
-                                        <li><a href="#" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a></li>
+                                        <li><a href="#" class="btn btn-primary"><i class="fa fa-pencil"></i></a></li>
                                         <li><a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a></li>
                                     </ul>
                                 </td>
@@ -98,7 +125,7 @@
                             <tr>
                                 <td>
                                     <ul class="action-list">
-                                        <li><a href="#" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a></li>
+                                        <li><a href="#" class="btn btn-primary"><i class="fa fa-pencil"></i></a></li>
                                         <li><a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a></li>
                                     </ul>
                                 </td>
@@ -113,7 +140,7 @@
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-sm-6 col-xs-6">showing <b>5</b> out of <b>25</b> entries</div>
-                        <div class="col-sm-6 col-xs-6">
+                        <!-- <div class="col-sm-6 col-xs-6">
                             <ul class="pagination hidden-xs pull-right">
                                 <li><a href="#">«</a></li>
                                 <li class="active"><a href="#">1</a></li>
@@ -127,7 +154,7 @@
                                 <li><a href="#">«</a></li>
                                 <li><a href="#">»</a></li>
                             </ul>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
