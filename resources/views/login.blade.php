@@ -15,15 +15,16 @@
 <body>
     <div id="card_login">
         <form action="/login-user">
+            <h3>Ingresa a tu cuenta</h3>
             <!-- Email input -->
             <div class="form-outline mb-4">
-                <input type="email" id="formEmailInput" class="form-control" />
+                <input type="email" id="formEmailInput" class="form-control" name="email" placeholder="E-mail"/>
                 <label class="form-label" for="formEmailInput">Correo electronico</label>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-                <input type="password" id="formPassword" class="form-control" />
+                <input type="password" id="formPassword" class="form-control" name="password" placeholder="Contraseña"/>
                 <label class="form-label" for="formPassword">Contraseña</label>
             </div>
 
@@ -48,7 +49,7 @@
 
             <!-- Register buttons -->
             <div class="text-center">
-                <p>¡No tienes una cuenta? <a href="#!">Registrate</a></p>
+                <p>¿No tienes una cuenta? <a href="#!">Registrate</a></p>
             </div>
         </form>
     </div>
