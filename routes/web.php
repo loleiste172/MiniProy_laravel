@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 /*
@@ -32,21 +34,22 @@ Route::get('/register', function(){
     return view('register');
 });
 
-Route::get('/dashboard', function(){
-    if(auth()->check()){
-        return view('dashboard');
-    }
-    //alternativamente mandarlo a login diciendole que necesita autorizacion
-    return view('index');
-});
+Route::get('/dashboard', [ProductController::class, 'showDashboard']);
+Route::get('/add', [ProductController::class, 'vShow']);
 
 Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::post('/store',  [UserController::class, 'store'])->name('store');
 
 Route::post('/login-user', [UserController::class, 'login'])->name('login-user');
-
+Route::post('/add-product', [ProductController::class, 'createProd'])->name('add-prod');
 
 Route::get('/logout', [UserController::class, 'logout']);
+
+Route::get('/edit/{product}', [ProductController::class, 'showEditPage']);
+
+Route::put('/edit/{product}', [ProductController::class, 'editProd'])->name('edit-prod');
+Route::delete('/delete/{product}', [ProductController::class, 'deleteProduct'])->name('del-prod');
+
 
 
 

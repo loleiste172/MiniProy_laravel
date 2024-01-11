@@ -35,10 +35,11 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <a href="#" class="btn btn-sm btn-primary pull-left"><i class="fa fa-plus-circle"></i> Añadir nuevo</a>
+                            <a href="./add" class="btn btn-sm btn-primary pull-left"><i class="fa fa-plus-circle"></i> Añadir nuevo producto</a>
+                            <a href="#" class="btn btn-sm btn-light pull-left" style="margin-left: 10px;"><i class="fa fa-repeat"></i> Actualizar</a>
                             <form class="form-horizontal pull-right">
                                 <div class="form-group">
-                                    <label>Show : </label>
+                                    <label>Mostrando: </label>
                                     <select class="form-control">
                                         <option>5</option>
                                         <option>10</option>
@@ -54,86 +55,33 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Action</th>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>View</th>
+                                <th>Acción</th>
+                                <th>ID</th>
+                                <th>Nombre del producto</th>
+                                <th>Precio</th>
+                                <th>Ver</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- <tr>    MUESTRA FOREACH
-                                <td>
-                                    <ul class="action-list">
-                                        <li><a href="#" class="btn btn-primary"><i class="fa fa-pencil"></i></a></li>
-                                        <li><a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a></li>
-                                    </ul>
-                                </td>
-                                <td>1</td>
-                                <td>Vincent Williamson</td>
-                                <td>31</td>
-                                <td><a href="#" class="btn btn-sm btn-success"><i class="fa fa-search"></i></a></td>
-                            </tr> -->
+                            @foreach($products as $producto)
                             <tr>
                                 <td>
                                     <ul class="action-list">
-                                        <li><a href="#" class="btn btn-primary"><i class="fa fa-pencil"></i></a></li>
-                                        <li><a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a></li>
+                                        <li><a href="./edit/{{$producto->id}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a></li>
+                                        <li><form action="{{route('del-prod', $producto->id)}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button>
+                                        </form></li>
+                                        
                                     </ul>
                                 </td>
-                                <td>1</td>
-                                <td>Vincent Williamson</td>
-                                <td>31</td>
-                                <td><a href="#" class="btn btn-sm btn-success"><i class="fa fa-search"></i></a></td>
+                                <td>{{$producto->id}}</td>
+                                <td>{{$producto->name}}</td>
+                                <td>{{$producto->price}}</td>
+                                <td><a href="./show/{{$producto->id}}" class="btn btn-sm btn-success"><i class="fa fa-search"></i></a></td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <ul class="action-list">
-                                        <li><a href="#" class="btn btn-primary"><i class="fa fa-pencil"></i></a></li>
-                                        <li><a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a></li>
-                                    </ul>
-                                </td>
-                                <td>2</td>
-                                <td>Taylor Reyes</td>
-                                <td>22</td>
-                                <td><a href="#" class="btn btn-sm btn-success"><i class="fa fa-search"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <ul class="action-list">
-                                        <li><a href="#" class="btn btn-primary"><i class="fa fa-pencil"></i></a></li>
-                                        <li><a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a></li>
-                                    </ul>
-                                </td>
-                                <td>3</td>
-                                <td>Justin Block</td>
-                                <td>26</td>
-                                <td><a href="#" class="btn btn-sm btn-success"><i class="fa fa-search"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <ul class="action-list">
-                                        <li><a href="#" class="btn btn-primary"><i class="fa fa-pencil"></i></a></li>
-                                        <li><a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a></li>
-                                    </ul>
-                                </td>
-                                <td>4</td>
-                                <td>Sean Guzman</td>
-                                <td>26</td>
-                                <td><a href="#" class="btn btn-sm btn-success"><i class="fa fa-search"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <ul class="action-list">
-                                        <li><a href="#" class="btn btn-primary"><i class="fa fa-pencil"></i></a></li>
-                                        <li><a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a></li>
-                                    </ul>
-                                </td>
-                                <td>5</td>
-                                <td>Keith Carter</td>
-                                <td>24</td>
-                                <td><a href="#" class="btn btn-sm btn-success"><i class="fa fa-search"></i></a></td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -42,6 +43,8 @@ class UserController extends Controller
             $request->session()->regenerate();
             return redirect('/');
         }
+
+
         return redirect('/login');//mandarle que esta erroneo en algo
     }
     public function logout() {
