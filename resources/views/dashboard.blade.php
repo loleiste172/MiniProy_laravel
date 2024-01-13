@@ -37,17 +37,7 @@
                         <div class="col-sm-12 col-xs-12">
                             <a href="./add" class="btn btn-sm btn-primary pull-left"><i class="fa fa-plus-circle"></i> Añadir nuevo producto</a>
                             <a href="#" class="btn btn-sm btn-light pull-left" style="margin-left: 10px;"><i class="fa fa-repeat"></i> Actualizar</a>
-                            <form class="form-horizontal pull-right">
-                                <div class="form-group">
-                                    <label>Mostrando: </label>
-                                    <select class="form-control">
-                                        <option>5</option>
-                                        <option>10</option>
-                                        <option>15</option>
-                                        <option>20</option>
-                                    </select>
-                                </div>
-                            </form>
+                            
                         </div>
                     </div>
                 </div>
@@ -87,7 +77,8 @@
                 </div>
                 <div class="panel-footer">
                     <div class="row">
-                        <div class="col-sm-6 col-xs-6">showing <b>5</b> out of <b>25</b> entries</div>
+                        {{$products->onEachSide(1)->links()}}
+                        <!-- <div class="col-sm-6 col-xs-6">showing <b>5</b> out of <b>25</b> entries</div> -->
                         <!-- <div class="col-sm-6 col-xs-6">
                             <ul class="pagination hidden-xs pull-right">
                                 <li><a href="#">«</a></li>

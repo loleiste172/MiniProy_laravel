@@ -56,11 +56,12 @@ class ProductController extends Controller
             return redirect('/dashboard');
         }
         auth()->logout();
-        return redirect('/login', ["error" => "No estas autorizado a realizar esta acción"]);
+        return redirect('/login', ["error" => "No estas autorizado a realizar esta acción"]);//esta madre tira error
     }
     public function showDashboard(){
         if(auth()->check()){
-            $prods=DB::table('products')->select('id', 'name', 'price')->get();
+            //$prods=DB::table('products')->select('id', 'name', 'price')->get();
+            $prods=Product::paginate(5);
             return view('/dashboard')->with('products', $prods);
         }
         //HACER ALGO EN CASO DE NO ESTAR LOGIN
@@ -70,5 +71,11 @@ class ProductController extends Controller
             return view('add');
         }
         //HACER ALGO EN CASO DE NO ESTAR LOGIN
+    }
+    public function showProd(Product $product){
+        //dd($product);
+        //$producto=Product::where('id', $product);
+        
+        return view('/show', ['product' => $product]);
     }
 }

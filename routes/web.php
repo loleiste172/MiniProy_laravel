@@ -50,7 +50,7 @@ Route::get('/edit/{product}', [ProductController::class, 'showEditPage']);
 Route::put('/edit/{product}', [ProductController::class, 'editProd'])->name('edit-prod');
 Route::delete('/delete/{product}', [ProductController::class, 'deleteProduct'])->name('del-prod');
 
-
+Route::get('/show/{product}', [ProductController::class, 'showProd']);
 
 
 // Route::controller(UserController::class)->group(function() {
