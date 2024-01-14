@@ -52,6 +52,12 @@ Route::delete('/delete/{product}', [ProductController::class, 'deleteProduct'])-
 
 Route::get('/show/{product}', [ProductController::class, 'showProd']);
 
+Route::get('/admin', [UserController::class, 'showAdmin']);
+Route::get('/add_user', [UserController::class, 'showAddUser']);
+Route::post('/add_user', [UserController::class, 'Adduser'])->name('a-add-user');
+Route::get('/edit_user/{user}', [UserController::class, 'showEditUser']);
+Route::put('/edit_user/{user}', [UserController::class, 'EditUser'])->name('a-edit-user');
+Route::delete('/delete_user/{user}', [UserController::class, 'DelUser'])->name('a-del-user');
 
 // Route::controller(UserController::class)->group(function() {
 

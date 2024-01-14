@@ -23,21 +23,21 @@ class ProductController extends Controller
 
     public function showEditPage(Product $product){
         //dd($product);
-        if(auth()->user()->rol=== "ventas"){
-            auth()->logout();
+        // if(auth()->user()->rol=== "ventas"){
+        //     auth()->logout();
 
-            return redirect('/login', ["error" => "No estas autorizado a realizar esta acción"]);
-        }
+        //     return redirect('/login', ["error" => "No estas autorizado a realizar esta acción"]);
+        // }
         return view('edit', ['product' => $product]);
     }
 
     public function editProd(Product $product, Request $request){
         
-        if(auth()->user()->rol=== "ventas"){
-            auth()->logout();
+        // if(auth()->user()->rol=== "ventas"){
+        //     auth()->logout();
 
-            return redirect('/login', ["error" => "No estas autorizado a realizar esta acción"]);
-        }
+        //     return redirect('/login', ["error" => "No estas autorizado a realizar esta acción"]);
+        // }
         $fields=$request->validate([
             'name' => 'required',
             'price' => 'required'
@@ -49,14 +49,10 @@ class ProductController extends Controller
         return redirect('/dashboard');
     }
     public function deleteProduct(Product $product){
-        
-        if(auth()->user()->rol !== "ventas"){
-            $product->delete();
+        $product->delete();
             
-            return redirect('/dashboard');
-        }
-        auth()->logout();
-        return redirect('/login', ["error" => "No estas autorizado a realizar esta acción"]);//esta madre tira error
+        return redirect('/dashboard');
+        
     }
     public function showDashboard(){
         if(auth()->check()){

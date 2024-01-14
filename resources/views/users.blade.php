@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Admin</title>
     <link href="{{ asset('css/dash.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     
@@ -22,7 +22,7 @@
         <a class="nav-link" href="./logout">log out </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./admin">Admin</a>
+        <a class="nav-link" href="#">dashboard</a>
       </li>
     </ul>
   </div>
@@ -35,7 +35,7 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <a href="./add" class="btn btn-sm btn-primary pull-left"><i class="fa fa-plus-circle"></i> Añadir nuevo producto</a>
+                            <a href="./add_user" class="btn btn-sm btn-primary pull-left"><i class="fa fa-plus-circle"></i> Añadir nuevo usuario</a>
                             
                         </div>
                     </div>
@@ -46,18 +46,18 @@
                             <tr>
                                 <th>Acción</th>
                                 <th>ID</th>
-                                <th>Nombre del producto</th>
-                                <th>Precio</th>
-                                <th>Ver</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Rol</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($products as $producto)
+                            @foreach($users as $user)
                             <tr>
                                 <td>
                                     <ul class="action-list">
-                                        <li><a href="./edit/{{$producto->id}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a></li>
-                                        <li><form action="{{route('del-prod', $producto->id)}}" method="post">
+                                        <li><a href="./edit_user/{{$user->id}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a></li>
+                                        <li><form action="{{route('a-del-user', $user->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button>
@@ -65,10 +65,10 @@
                                         
                                     </ul>
                                 </td>
-                                <td>{{$producto->id}}</td>
-                                <td>{{$producto->name}}</td>
-                                <td>{{$producto->price}}</td>
-                                <td><a href="./show/{{$producto->id}}" class="btn btn-sm btn-success"><i class="fa fa-search"></i></a></td>
+                                <td>{{$user->id}}</td>
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->email}}</td>
+                                <td>user-rol</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -76,7 +76,23 @@
                 </div>
                 <div class="panel-footer">
                     <div class="row">
-                        {{$products->onEachSide(1)->links()}}
+                        {{$users->onEachSide(1)->links()}}
+                        <!-- <div class="col-sm-6 col-xs-6">showing <b>5</b> out of <b>25</b> entries</div> -->
+                        <!-- <div class="col-sm-6 col-xs-6">
+                            <ul class="pagination hidden-xs pull-right">
+                                <li><a href="#">«</a></li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">»</a></li>
+                            </ul>
+                            <ul class="pagination visible-xs pull-right">
+                                <li><a href="#">«</a></li>
+                                <li><a href="#">»</a></li>
+                            </ul>
+                        </div> -->
                     </div>
                 </div>
             </div>

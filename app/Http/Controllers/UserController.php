@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -21,7 +20,10 @@ class UserController extends Controller
             'email' => ['required', 'email', Rule::unique('users', 'email')],
             'password' => ['required', 'min:8', 'max:200']
         ]);
-        $fields['rol']="ventas";
+        // if(!isset($fields['rol'])){
+        //     $fields['rol']="ventas";
+        // }
+        
         $fields['password']=bcrypt($fields['password']);
         $fields['name']=strip_tags($fields['name']);
         $fields['email']=strip_tags($fields['email']);
@@ -50,5 +52,65 @@ class UserController extends Controller
     public function logout() {
         auth()->logout();
         return redirect('/');
+    }
+    public function showAdmin() {
+        if(auth()->check()){
+            $users=User::paginate(5);
+            return view('/users')->with('users', $users);
+        }
+    }
+    public function showAddUser() {
+        if(auth()->check()){
+            return view('adduser');
+        }
+    }
+    public function AddUser(Request $request) {
+        if(auth()->check()){
+            $fields=$request->validate([
+                'name' => 'required',
+                'email' => ['required', 'email', Rule::unique('users', 'email')],
+                'password' => ['required', 'min:8', 'max:200']
+            ]);
+            // if(!isset($fields['rol'])){
+            //     $fields['rol']="ventas";
+            // }
+            //TODO: VER QUE PEDO POR QUE NO VE ROL KJAJAJAK
+            
+            $fields['password']=bcrypt($fields['password']);
+            $fields['name']=strip_tags($fields['name']);
+            $fields['email']=strip_tags($fields['email']);
+            //dd($fields);
+            User::create($fields);
+            return redirect('/admin');
+        }
+    }
+    public function showEditUser(User $user){
+        if(auth()->check()){
+            return view('edituser', ['user' => $user]);
+        }
+    }
+    public function EditUser(User $user, Request $request){
+        
+        if(auth()->check()){
+            $fields=$request->validate([
+                'name' => 'required',
+                'email' => ['required', 'email'],
+                'password' => ['required', 'min:8', 'max:200']
+            ]);
+            // if(!isset($fields['rol'])){
+            //     $fields['rol']="ventas";
+            // }
+            //TODO: VER QUE PEDO POR QUE NO VE ROL KJAJAJAK
+            
+            $fields['password']=bcrypt($fields['password']);
+            $fields['name']=strip_tags($fields['name']);
+            $fields['email']=strip_tags($fields['email']);
+            $user->update($fields);
+            return redirect('/admin');
+        }
+    }
+    public function DelUser(User $user){
+        $user->delete();
+        return redirect('/admin');
     }
 }
