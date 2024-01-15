@@ -15,18 +15,18 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+//ruta base
 Route::get('/', function () {
     return view('index');
 });
-
+//ruta login
 Route::get('/login', function(){
     if(auth()->check()){
         return redirect('/');
     }
     return view('login');
 });
-
+//ruta registro
 Route::get('/register', function(){
     if(auth()->check()){
         return redirect('/');
