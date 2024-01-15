@@ -21,10 +21,15 @@
       <li class="nav-item">
         <a class="nav-link" href="./logout">log out </a>
       </li>
+    @can('View-dashboard')
       <li class="nav-item">
-        <a class="nav-link" href="#">dashboard</a>
+        <a class="nav-link" href="./dashboard">dashboard</a>
       </li>
+      @endcan
     </ul>
+    <span class="navbar-text ms-auto">
+      ¡Hola, {{Auth::user()->name}}! ({{$rol}})
+    </span>
   </div>
 </nav>
     <!--  -->
@@ -35,8 +40,9 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
+                            @can('Add-User')
                             <a href="./add_user" class="btn btn-sm btn-primary pull-left"><i class="fa fa-plus-circle"></i> Añadir nuevo usuario</a>
-                            
+                            @endcan
                         </div>
                     </div>
                 </div>
@@ -44,31 +50,36 @@
                     <table class="table">
                         <thead>
                             <tr>
+                            @if(auth()->user()->can('Edit-User') || auth()->user()->can('Del-User'))
                                 <th>Acción</th>
+                            @endif
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Correo</th>
-                                <th>Rol</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($users as $user)
                             <tr>
+                            @if(auth()->user()->can('Edit-User') || auth()->user()->can('Del-User'))
                                 <td>
                                     <ul class="action-list">
+                                        @can('Edit-User')
                                         <li><a href="./edit_user/{{$user->id}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a></li>
+                                        @endcan
+                                        @can('Del-User')
                                         <li><form action="{{route('a-del-user', $user->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button>
                                         </form></li>
-                                        
+                                        @endcan
                                     </ul>
                                 </td>
+                                @endif
                                 <td>{{$user->id}}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
-                                <td>user-rol</td>
                             </tr>
                             @endforeach
                         </tbody>

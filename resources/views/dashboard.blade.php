@@ -21,10 +21,15 @@
       <li class="nav-item">
         <a class="nav-link" href="./logout">log out </a>
       </li>
+      @can('Admin-Dashboard')
       <li class="nav-item">
         <a class="nav-link" href="./admin">Admin</a>
       </li>
+      @endcan
     </ul>
+    <span class="navbar-text ms-auto">
+      ¡Hola, {{Auth::user()->name}}! ({{$rol[0]}})
+    </span>
   </div>
 </nav>
     <!--  -->
@@ -34,17 +39,20 @@
             <div class="panel">
                 <div class="panel-heading">
                     <div class="row">
+                        @can('Add-Product')
                         <div class="col-sm-12 col-xs-12">
                             <a href="./add" class="btn btn-sm btn-primary pull-left"><i class="fa fa-plus-circle"></i> Añadir nuevo producto</a>
-                            
                         </div>
+                        @endcan
                     </div>
                 </div>
                 <div class="panel-body table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
+                                @if(auth()->user()->can('Edit-Product') || auth()->user()->can('Delete-Product'))
                                 <th>Acción</th>
+                                @endif
                                 <th>ID</th>
                                 <th>Nombre del producto</th>
                                 <th>Precio</th>
@@ -54,17 +62,22 @@
                         <tbody>
                             @foreach($products as $producto)
                             <tr>
+                            @if(auth()->user()->can('Edit-Product') || auth()->user()->can('Delete-Product'))
                                 <td>
                                     <ul class="action-list">
+                                        @can('Edit-Product')
                                         <li><a href="./edit/{{$producto->id}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a></li>
+                                        @endcan
+                                        @can('Delete-Product')
                                         <li><form action="{{route('del-prod', $producto->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button>
                                         </form></li>
-                                        
+                                        @endcan
                                     </ul>
                                 </td>
+                            @endif
                                 <td>{{$producto->id}}</td>
                                 <td>{{$producto->name}}</td>
                                 <td>{{$producto->price}}</td>

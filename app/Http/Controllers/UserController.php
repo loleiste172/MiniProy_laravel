@@ -29,6 +29,7 @@ class UserController extends Controller
         $fields['email']=strip_tags($fields['email']);
         //dd($fields);
         $user=User::create($fields);
+        $user->assignRole('Ventas');
         auth()->login($user);
         
         return redirect('/');
@@ -56,7 +57,8 @@ class UserController extends Controller
     public function showAdmin() {
         if(auth()->check()){
             $users=User::paginate(5);
-            return view('/users')->with('users', $users);
+            $user_rol=auth()->user()->getRoleNames();
+            return view('/users', ['users' => $users, 'rol' => $user_rol[0]]);
         }
     }
     public function showAddUser() {
@@ -66,6 +68,7 @@ class UserController extends Controller
     }
     public function AddUser(Request $request) {
         if(auth()->check()){
+            $rol_name=$request->rol;
             $fields=$request->validate([
                 'name' => 'required',
                 'email' => ['required', 'email', Rule::unique('users', 'email')],
@@ -80,23 +83,28 @@ class UserController extends Controller
             $fields['name']=strip_tags($fields['name']);
             $fields['email']=strip_tags($fields['email']);
             //dd($fields);
-            User::create($fields);
+            $user=User::create($fields);
+            $user->assignRole($rol_name);
             return redirect('/admin');
         }
     }
     public function showEditUser(User $user){
         if(auth()->check()){
-            return view('edituser', ['user' => $user]);
+            $user_rol=$user->getRoleNames();
+            return view('edituser', ['user' => $user, 'rol' => $user_rol[0]]);
         }
     }
     public function EditUser(User $user, Request $request){
         
         if(auth()->check()){
+            
+            $rol_name=$request->rol;
             $fields=$request->validate([
                 'name' => 'required',
                 'email' => ['required', 'email'],
                 'password' => ['required', 'min:8', 'max:200']
             ]);
+            
             // if(!isset($fields['rol'])){
             //     $fields['rol']="ventas";
             // }
@@ -106,6 +114,8 @@ class UserController extends Controller
             $fields['name']=strip_tags($fields['name']);
             $fields['email']=strip_tags($fields['email']);
             $user->update($fields);
+            $user->syncRoles([]);
+            $user->assignRole($rol_name);
             return redirect('/admin');
         }
     }

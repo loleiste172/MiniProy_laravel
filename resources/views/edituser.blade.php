@@ -36,12 +36,12 @@
             <div class="form-group"><!-- TODO: hacer que aca se seleccione el verdadero dependiendo usuario -->
               <label for="rol">Rol:</label>
               <select class="form-control" id="rol" required name="rol">
-                <option value="administrador">Administrador</option>
-                <option value="ventas">Ventas</option>
+                <option @if($rol=='Admin') selected @endif value="Admin">Administrador</option>
+                <option value="Ventas" @if($rol=='Ventas') selected @endif>Ventas</option>
               </select>
             </div>
 
-            <button type="submit" class="btn btn-primary">Agregar Usuario</button>
+            <button type="submit" class="btn btn-primary">Editar Usuario</button>
           </form>
 
         </div>

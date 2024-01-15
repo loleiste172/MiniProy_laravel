@@ -17,15 +17,28 @@
     
       <div class=" collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ms-auto ">
+          @guest
           <li class="nav-item">
             <a class="nav-link mx-2 active" aria-current="page" href="./login">Ingresa</a>
           </li>
           <li class="nav-item">
             <a class="nav-link mx-2 active" aria-current="page" href="./register">Registrate</a>
           </li>
+          @else
+          <li class="nav-item">
+            <a class="nav-link mx-2 active" aria-current="page" href="./logout">log out </a>
+          </li>
+          @can('View-dashboard')
           <li class="nav-item">
             <a class="nav-link mx-2 active" aria-current="page" href="./dashboard">Dashboard</a>
           </li>
+          @endcan
+          @can('Admin-Dashboard')
+          <li class="nav-item">
+            <a class="nav-link mx-2 active" aria-current="page" href="./admin">Admin</a>
+          </li>
+          @endcan
+          @endguest
         </ul>
       </div>
     </div>

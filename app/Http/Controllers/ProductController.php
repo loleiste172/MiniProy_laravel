@@ -58,7 +58,8 @@ class ProductController extends Controller
         if(auth()->check()){
             //$prods=DB::table('products')->select('id', 'name', 'price')->get();
             $prods=Product::paginate(5);
-            return view('/dashboard')->with('products', $prods);
+            $user_rol=auth()->user()->getRoleNames();
+            return view('/dashboard', ['products' => $prods, 'rol' => $user_rol]);
         }
         //HACER ALGO EN CASO DE NO ESTAR LOGIN
     }
